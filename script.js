@@ -15,7 +15,13 @@ let numClosedDoors = 3;
 let openDoor1; 
 let openDoor2;
 let openDoor3;
+<<<<<<< HEAD
 
+=======
+let closedDoorPath = 'https://content.codecademy.com/projects/chore-door/images/closed_door.svg'
+let startButton = document.getElementById('start');
+let currentlyPlaying = true
+>>>>>>> parent of 8d3dbb7 (Revert "Update script.js")
 
 const isBot = door => {
     if(door.src === botDoorPath) {
@@ -26,7 +32,7 @@ const isBot = door => {
 }
 
 const isClicked = door => {
-    if (door === closedDoorPath) {
+    if (door.src === closedDoorPath) {
         return false;
     } else {
         return true;
@@ -52,32 +58,30 @@ const randomChoreDoorGenerator = () => {
         openDoor1 = beachDoorPath;
         openDoor2 = botDoorPath;
         openDoor3 = spaceDoorPath;
-    } else {
+    } else { (choreDoor === 2) 
         openDoor1 = beachDoorPath;
         openDoor2 = spaceDoorPath;
         openDoor3 = botDoorPath;
     }      
 };
 
-
-
 //Door click functionality
 door1.onclick = () => {
-    if(!isClicked(doorImage1)) {
+    if(currentlyPlaying && !isClicked(door1)) {
     doorImage1.src = openDoor1;
     playDoor(doorImage1);
     }
 }
 
 door2.onclick = () => {
-    if(!isClicked(doorImage2)) {
+    if(currentlyPlaying && !isClicked(door2)) {
     doorImage2.src = openDoor2;
     playDoor(doorImage2);
     }
 }
 
 door3.onclick = () => {
-    if(!isClicked(doorImage3)) {
+    if(currentlyPlaying && !isClicked(door3)) {
     doorImage3.src = openDoor3;
     playDoor(doorImage3);
     }
@@ -89,6 +93,7 @@ let gameOver = (status) => {
     } else {
         startButton.innerHTML = 'Game over! Play again?';
     }
+    currentlyPlaying = false;
 }
 
 randomChoreDoorGenerator()
